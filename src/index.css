@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap");
+* {
+  margin: 0;
+  padding-top: 0;
+  box-sizing: border-box;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+body {
+  background: #fdfdfd;
+  font-family: "Nunito", sans-serif;
+  font-size: 1rem;
+}
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 0.5rem;
+  text-align: center;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+ul {
+  list-style: none;
+  display: flex;
+}
+
+li {
+  margin-right: 1rem;
+  cursor: pointer;
+}
+li:hover{
+  text-decoration: underline  red;
+}
+h1 {
+  color: #e74c3c;
+  margin-bottom: 0.5rem;
+}
+
+/*Productos en el menu*/
+.titulos{
+  color: #e74c3c;
+  text-align: center;
+}
+
+.AfueraCard{
+  padding-top: 1%;  
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding: 1rem 0;
+}
+.card {
+  width: 15rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 15rem auto;
+  height: 17rem;
+  background: #fff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 10px;
+  margin: auto;
+  overflow: hidden;
+}
+.card--avatar {
+  width: 15rem;
+  height: 10rem;
+  object-fit: cover;
+}
+.card--title {
+  color: #222;
+  font-weight: 700;
+  text-transform: capitalize;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+.card--link {
+  text-decoration: none;
+  background: #d65f51;
+  color: #fff;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  margin: 1%;
+
+}
+
+.contBoton{
+  text-align: center;
+}
+
+
+.card--link:hover{
+  background: #e42510;
+}
+
+.conteneder{
+  display: flex;
+}
+/*Nuevo producto*/
+input[type=text]{
+
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  width: 100%;
+}
+
+
+.DescripcionInput{
+  width: 100%;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  height: 10rem;
+}
+
+
+.Enviar{
+  text-decoration: none;
+  background: #d65f51;
+  color: #fff;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  width: 100%;
+
+}
