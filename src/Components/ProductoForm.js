@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'unistore/react'
-
+import {v4 as generadorKey} from 'uuid'
 import Swal from 'sweetalert2';
 import {  actions } from "../store"
 
@@ -8,7 +8,7 @@ import {  actions } from "../store"
 class ProductoForm extends React.Component {
     constructor(props){
       super(props)
-      this.state = {NuevaReceta: '', Descripcion:'', image:'', new: false}; //Para la form
+      this.state = {NuevaReceta: '', Descripcion:'', image:''}; //Para la form
      
 
       this.handleSubmit = this.handleSubmit.bind(this);  //Para la alerta
@@ -43,7 +43,7 @@ class ProductoForm extends React.Component {
 
     handleSubmit = event =>{
       event.preventDefault()
-      this.props.crearComida( { name: this.state.NuevaReceta,descripcion: this.state.Descripcion,  image: this.state.image }) /*Para crear el pruducto*/ 
+      this.props.crearComida( { name: this.state.NuevaReceta,descripcion: this.state.Descripcion,  image: this.state.image, id:generadorKey() }) /*Para crear el pruducto*/ 
   
       this.state.image=''
       this.state.Descripcion=''
@@ -58,7 +58,7 @@ class ProductoForm extends React.Component {
         confirmButtonText: "OK",
         
     })
-    this.state.new =true
+    console.log(this.crearComida)
     
     
     }
@@ -68,7 +68,6 @@ class ProductoForm extends React.Component {
     render() {
       return (
       
-    
       <div className=" flex justify-center">
         
         <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-5" onSubmit={this.handleSubmit}>

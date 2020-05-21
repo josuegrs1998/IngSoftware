@@ -3,7 +3,7 @@ import {v4 as generadorKey} from 'uuid'
 /*Informacion a almacenar - Producto*/ 
 let store = createStore({ //State
     comidas: [
-        { name: "Pupusas", descripcion:"Harina, masa, etc" ,image: require('./Components/images/pupusas.jpg'), id: generadorKey() },
+        { name: "Pupusas", descripcion:"Harina, masa, etc" ,image: require('./Components/images/pupusas.jpg'), id: 1 },
         { name: "Pizza",descripcion:"Harina, masa, piña, peperonia", image: require('./Components/images/pizza.jpg'),  id: generadorKey() },
         { name: "Carne",descripcion:"Vaca, matar vaca, cocinar vaca" ,image: require('./Components/images/carne.jpg'), id: generadorKey() }
     ]
