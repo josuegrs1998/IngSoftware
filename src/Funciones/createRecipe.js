@@ -8,7 +8,7 @@ function createNewRecipe(o) {
     let id = generadorKey();
     return new Promise((resolve, reject) => {
         localForage
-            .setItem(id, { name, descripcion, image })
+            .setItem(id, { name, descripcion, image, id})
             .then(createdRecipe => {
                 console.log(createdRecipe);
                 resolve(createdRecipe);
@@ -18,6 +18,20 @@ function createNewRecipe(o) {
             });
     });
 }
+
+
+
+
+export async function getAllRecipes() {
+    let recipesKeys = await localForage.keys()
+    let recipes = []
+    for (let recipeKey of recipesKeys){
+        recipes.push(await localForage.getItem(recipeKey))
+    }
+    return recipes
+}
+
+
 
 async function findStoredRecipe(id) {
     return new Promise((resolve, reject) => {

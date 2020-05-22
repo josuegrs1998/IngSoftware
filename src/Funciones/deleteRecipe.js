@@ -4,12 +4,10 @@ import localForage from "localforage";
 
 async function DeleteRecipe(o) {
     return new Promise((resolve, reject) => {
-        let borrar = localForage.getItem(o.id)
-        console.log(borrar)
         localForage
-            .removeItem(borrar)
-            .then(storedRecipe => {
-                console.log('Se borro ')
+            .removeItem(o)
+            .then(() => {
+                resolve('Borrado')
             })
             .catch(error => {
                 reject(error);

@@ -54,30 +54,32 @@ class ProductoForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-
-    createNewRecipe(recipe).then(createdRecipe => {
-      this.clearInputs()
-    })
-    /*Para crear el pruducto*/
-    ///crearComida({ name: this.state.NuevaReceta, descripcion: this.state.Descripcion, image: this.state.image, id:  })
-
-    this.setState({ show: true }) //Para el sweet alert
-
-    Swal.fire({
-      title: 'Éxito',
-      type: 'success',
-      text: 'Receta añadida con éxito',
-      animation: true,
-      confirmButtonText: "OK",
-
-    })
-
-    console.log(this.crearComida)
     let recipe = {
       name: this.state.NuevaReceta,
       descripcion: this.state.Descripcion,
       image: this.state.image,
     }
+    createNewRecipe(recipe).then(createdRecipe => {
+      console.log(createdRecipe)
+      this.props.addComidaToState(createdRecipe)
+      this.clearInputs()
+    })
+    .then(() => {
+      Swal.fire({
+        title: 'Éxito',
+        type: 'success',
+        text: 'Receta añadida con éxito',
+        animation: true,
+        confirmButtonText: "OK",
+      })
+    })
+    .catch(error => {
+      console.log('No se creo, ', error)
+    })
+    /*Para crear el pruducto*/
+    ///crearComida({ name: this.state.NuevaReceta, descripcion: this.state.Descripcion, image: this.state.image, id:  })
+
+    
 
     console.log(recipe)
 

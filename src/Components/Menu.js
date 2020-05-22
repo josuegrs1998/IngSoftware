@@ -10,6 +10,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import { actions } from '../store';
 
 class Menu extends React.Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class Menu extends React.Component {
       nombre: '',
       descripcion: '',
       image: '',
-      id: this.props.id
+      id: ''
     }
     this.HandleClick = this.HandleClick.bind(this) //Click para borrar
     this.HandleEditar = this.HandleEditar.bind(this)  //Click para editar
@@ -32,7 +33,8 @@ class Menu extends React.Component {
     this.setState({
       nombre: this.props.nombreProducto,
       descripcion: this.props.descripcion,
-      image: this.props.image
+      image: this.props.image,
+      id: this.props.id
     })
   }
 
@@ -41,20 +43,22 @@ class Menu extends React.Component {
     this.estadoEditar = true
 
   }
-
   HandleClick() {
-    Swal.fire({
+    let {id} = this.state
+    DeleteRecipe(id)
+    this.props.removeComidaFromState(id)
+    /*Swal.fire({
       title: '¿Seguro que desea borrar?',
       type: 'warning',
-
       animation: true,
       confirmButtonText: "Si",
       showCancelButton: true,
       cancelButtonText: "Nel"
     }).then((result) => {
       if (result.value) {
-        DeleteRecipe(this.state.id).then(eliminarReceta => {
-          console.log('receta eliminada')
+        let {id} = this.state
+        this.props.removeComidaFromState(id)
+        DeleteRecipe(id).then(() => {
           Swal.fire({
             title: 'Éxito',
             type: 'success',
@@ -64,14 +68,9 @@ class Menu extends React.Component {
 
           })
 
-        })
+        }).catch(error => console.log(error, 'Errorcito wei'))
       }
-    })
-      ;
-
-    console.log(this.state)
-
-
+    })*/
   }
 
 
@@ -86,7 +85,7 @@ class Menu extends React.Component {
       return (
 
         <div className="AfueraCard">
-
+            <span>{this.state.id}</span>
           <div className="card">
             <img className="card--avatar" src={this.props.image} />
             <h1 className="card--title">{this.props.nombreProducto}</h1>
@@ -111,4 +110,4 @@ class Menu extends React.Component {
 }
 
 
-export default connect()(Menu)
+export default connect([], actions)(Menu)
