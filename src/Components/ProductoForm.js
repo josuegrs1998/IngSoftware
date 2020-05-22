@@ -3,7 +3,7 @@ import { connect } from 'unistore/react'
 import { v4 as generadorKey } from 'uuid'
 import Swal from 'sweetalert2';
 import { actions } from "../store"
-import createNewRecipe from '../Funciones/create'
+import createNewRecipe from '../Funciones/createRecipe'
 import localForage from "localforage";
 
 // this.props.comidas.map((comida)=><Menu nombreProducto={comida.name} descripcion={comida.descripcion} image={comida.image} key={comida.id} />)
@@ -54,29 +54,37 @@ class ProductoForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    this.props.crearComida({ name: this.state.NuevaReceta, descripcion: this.state.Descripcion, image: this.state.image, id: generadorKey() }) /*Para crear el pruducto*/
-
-    this.setState({ show: true }) //Para el sweet alert
-
-    Swal.fire({
-      title: 'Éxito',
-      type: 'success',
-      text: 'Receta añadida con éxito',
-      animation: true,
-      confirmButtonText: "OK",
-
-    })
-
-    console.log(this.crearComida)
     let recipe = {
       name: this.state.NuevaReceta,
       descripcion: this.state.Descripcion,
       image: this.state.image,
     }
+    createNewRecipe(recipe).then(createdRecipe => {
+      console.log(createdRecipe)
+      this.props.addComidaToState(createdRecipe)
+      this.clearInputs()
+    })
+    .then(() => {
+      Swal.fire({
+        title: 'Éxito',
+        type: 'success',
+        text: 'Receta añadida con éxito',
+        animation: true,
+        confirmButtonText: "OK",
+      })
+    })
+    .catch(error => {
+      console.log('No se creo, ', error)
+    })
+    /*Para crear el pruducto*/
+    ///crearComida({ name: this.state.NuevaReceta, descripcion: this.state.Descripcion, image: this.state.image, id:  })
+
+    
 
     console.log(recipe)
-    this.clearInputs()
-    
+
+
+
 
 
   }

@@ -3,12 +3,14 @@ import Swal from 'sweetalert2';
 import EditarProducto from './EditarProducto'
 import { connect } from 'unistore/react'
 import createStore from 'unistore'
+import DeleteRecipe from '../Funciones/deleteRecipe'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
+import { actions } from '../store';
 
 class Menu extends React.Component {
   constructor(props) {
@@ -17,7 +19,7 @@ class Menu extends React.Component {
       nombre: '',
       descripcion: '',
       image: '',
-      id: this.props.id
+      id: ''
     }
     this.HandleClick = this.HandleClick.bind(this) //Click para borrar
     this.HandleEditar = this.HandleEditar.bind(this)  //Click para editar
@@ -31,7 +33,8 @@ class Menu extends React.Component {
     this.setState({
       nombre: this.props.nombreProducto,
       descripcion: this.props.descripcion,
-      image: this.props.image
+      image: this.props.image,
+      id: this.props.id
     })
   }
 
@@ -40,19 +43,34 @@ class Menu extends React.Component {
     this.estadoEditar = true
 
   }
-
   HandleClick() {
+    let {id} = this.state
+   
+ 
     Swal.fire({
       title: '¿Seguro que desea borrar?',
       type: 'warning',
-
       animation: true,
       confirmButtonText: "Si",
       showCancelButton: true,
       cancelButtonText: "Nel"
-    });
+    }).then((result) => {
+      if (result.value) {
+        let {id} = this.state
+        this.props.removeComidaFromState(id)
+        DeleteRecipe(id).then(() => {
+          Swal.fire({
+            title: 'Éxito',
+            type: 'success',
+            text: 'Receta añadida con éxito',
+            animation: true,
+            confirmButtonText: "OK",
 
-    console.log(this.state)
+          })
+
+        }).catch(error => console.log(error, 'Errorcito wei'))
+      }
+    })
   }
 
 
@@ -67,7 +85,7 @@ class Menu extends React.Component {
       return (
 
         <div className="AfueraCard">
-
+           
           <div className="card">
             <img className="card--avatar" src={this.props.image} />
             <h1 className="card--title">{this.props.nombreProducto}</h1>
@@ -92,4 +110,4 @@ class Menu extends React.Component {
 }
 
 
-export default connect()(Menu)
+export default connect([], actions)(Menu)
