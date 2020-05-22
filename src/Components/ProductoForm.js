@@ -22,7 +22,7 @@ class ProductoForm extends React.Component {
     this.setState({
       ...this.state,
       NuevaReceta: '',
-      descripcion: '',
+      Descripcion: '',
       image: ''
     })
   }
@@ -75,11 +75,8 @@ class ProductoForm extends React.Component {
     }
 
     console.log(recipe)
-
-    createNewRecipe(recipe).then(createdRecipe => {
-      this.clearInputs()
-    })
-
+    this.clearInputs()
+    
 
 
   }
