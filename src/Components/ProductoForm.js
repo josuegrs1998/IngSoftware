@@ -3,7 +3,7 @@ import { connect } from 'unistore/react'
 import { v4 as generadorKey } from 'uuid'
 import Swal from 'sweetalert2';
 import { actions } from "../store"
-import createNewRecipe from '../Funciones/create'
+import createNewRecipe from '../Funciones/createRecipe'
 import localForage from "localforage";
 
 // this.props.comidas.map((comida)=><Menu nombreProducto={comida.name} descripcion={comida.descripcion} image={comida.image} key={comida.id} />)
@@ -22,7 +22,7 @@ class ProductoForm extends React.Component {
     this.setState({
       ...this.state,
       NuevaReceta: '',
-      descripcion: '',
+      Descripcion: '',
       image: ''
     })
   }
@@ -54,7 +54,12 @@ class ProductoForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    this.props.crearComida({ name: this.state.NuevaReceta, descripcion: this.state.Descripcion, image: this.state.image, id: generadorKey() }) /*Para crear el pruducto*/
+
+    createNewRecipe(recipe).then(createdRecipe => {
+      this.clearInputs()
+    })
+    /*Para crear el pruducto*/
+    ///crearComida({ name: this.state.NuevaReceta, descripcion: this.state.Descripcion, image: this.state.image, id:  })
 
     this.setState({ show: true }) //Para el sweet alert
 
@@ -76,9 +81,7 @@ class ProductoForm extends React.Component {
 
     console.log(recipe)
 
-    createNewRecipe(recipe).then(createdRecipe => {
-      this.clearInputs()
-    })
+
 
 
 

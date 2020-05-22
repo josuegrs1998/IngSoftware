@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import EditarProducto from './EditarProducto'
 import { connect } from 'unistore/react'
 import createStore from 'unistore'
+import DeleteRecipe from '../Funciones/deleteRecipe'
 import {
   BrowserRouter as Router,
   Switch,
@@ -50,9 +51,27 @@ class Menu extends React.Component {
       confirmButtonText: "Si",
       showCancelButton: true,
       cancelButtonText: "Nel"
-    });
+    }).then((result) => {
+      if (result.value) {
+        DeleteRecipe(this.state.id).then(eliminarReceta => {
+          console.log('receta eliminada')
+          Swal.fire({
+            title: 'Éxito',
+            type: 'success',
+            text: 'Receta añadida con éxito',
+            animation: true,
+            confirmButtonText: "OK",
+
+          })
+
+        })
+      }
+    })
+      ;
 
     console.log(this.state)
+
+
   }
 
 
