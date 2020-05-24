@@ -18,6 +18,7 @@ class EditarProducto extends React.Component {
       id: this.props.match.params,
       idCorrecto: true
     }
+    this.onImageChange = this.onImageChange.bind(this)  //Click para editar
 
   }
 
@@ -64,15 +65,20 @@ class EditarProducto extends React.Component {
     if (event.target.files && event.target.files[0]) {
       let reader = new FileReader();
       reader.onload = (e) => {
-        this.setState({ image: e.target.result });
+       
+        this.setState({ 
+
+          image: e.target.result });
       };
+      console.log(this.state)
+
       reader.readAsDataURL(event.target.files[0]);
     }
   }
 
   handleSubmit = event => {
     event.preventDefault()
-    this.state.image = ''
+   // this.state.image = ''
     this.state.Descripcion = ''
     this.state.NuevaReceta = ''
     this.setState({ show: true }) //Para el sweet alert
@@ -125,7 +131,7 @@ class EditarProducto extends React.Component {
 
           <input type="file" onChange={this.onImageChange} className="inputFile" id="" />
 
-          <img className="card--avatar" src={this.state.image}></img>
+          <img className="card--avatar" src={this.state.image} alt="ElegirImagen" />
 
           <br></br>
           <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full w-full" type="submit" value="Agregar Comida" >Agregar Comida</button>

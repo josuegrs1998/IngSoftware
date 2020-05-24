@@ -43,8 +43,6 @@ class Menu extends React.Component {
     console.log(this.state)
     this.estadoEditar = true
 
-
-
   }
   HandleClick() {
     let { id } = this.state
