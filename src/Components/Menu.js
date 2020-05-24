@@ -4,6 +4,7 @@ import EditarProducto from './EditarProducto'
 import { connect } from 'unistore/react'
 import createStore from 'unistore'
 import DeleteRecipe from '../Funciones/deleteRecipe'
+import updateRecipe from '../Funciones/updateRecipe'
 import {
   BrowserRouter as Router,
   Switch,
@@ -42,11 +43,13 @@ class Menu extends React.Component {
     console.log(this.state)
     this.estadoEditar = true
 
+
+
   }
   HandleClick() {
-    let {id} = this.state
-   
- 
+    let { id } = this.state
+
+
     Swal.fire({
       title: '¿Seguro que desea borrar?',
       type: 'warning',
@@ -56,13 +59,13 @@ class Menu extends React.Component {
       cancelButtonText: "Nel"
     }).then((result) => {
       if (result.value) {
-        let {id} = this.state
+        let { id } = this.state
         this.props.removeComidaFromState(id)
         DeleteRecipe(id).then(() => {
           Swal.fire({
             title: 'Éxito',
             type: 'success',
-            text: 'Receta añadida con éxito',
+            text: 'Receta eliminada con éxito',
             animation: true,
             confirmButtonText: "OK",
 
@@ -85,7 +88,7 @@ class Menu extends React.Component {
       return (
 
         <div className="AfueraCard">
-           
+
           <div className="card">
             <img className="card--avatar" src={this.props.image} />
             <h1 className="card--title">{this.props.nombreProducto}</h1>
