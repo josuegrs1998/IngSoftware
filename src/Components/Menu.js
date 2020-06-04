@@ -37,6 +37,7 @@ class Menu extends React.Component {
       image: this.props.image,
       id: this.props.id
     })
+   
   }
 
   HandleEditar() {
