@@ -78,7 +78,7 @@ class EditarProducto extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-   // this.state.image = ''
+    //this.state.image = ''
     this.state.Descripcion = ''
     this.state.NuevaReceta = ''
     this.setState({ show: true }) //Para el sweet alert
