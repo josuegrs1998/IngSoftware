@@ -36,7 +36,7 @@ li {
 li:hover{
   text-decoration: underline  red;
 }
-h1 {
+.headerh1 {
   color: #e74c3c;
   margin-bottom: 0.5rem;
   font-size: 3rem;

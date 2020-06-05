@@ -5,6 +5,8 @@ import {  actions } from "./store";
 import Recetas from './pages/Recetas'
 import Header from './Components/Header'
 import ProductoForm from './Components/ProductoForm'
+import './tailwind.min.css'
+
 
 import {
   BrowserRouter as Router,
