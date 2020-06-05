@@ -11,12 +11,9 @@ class Header extends React.Component {
     render() {
       return (
         <div>
-        <nav>
-            <h1>Recetario </h1>
-            <ul>
-        
-           
-            </ul>
+        <nav className="contBoton">
+            <h1 className="">Recetario </h1>
+      
         </nav>
         <div className="contBoton">
             <h2 className="titulos" >Home</h2>
