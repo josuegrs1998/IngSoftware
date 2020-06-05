@@ -55,7 +55,7 @@ class Menu extends React.Component {
       animation: true,
       confirmButtonText: "Si",
       showCancelButton: true,
-      cancelButtonText: "Nel"
+      cancelButtonText: "No"
     }).then((result) => {
       if (result.value) {
         let { id } = this.state

@@ -12,10 +12,10 @@ class Header extends React.Component {
       return (
         <div>
         <nav>
-            <h1>Restaurante IngSoftware</h1>
+            <h1>Recetario </h1>
             <ul>
         
-            <li>Nosotros</li>
+           
             </ul>
         </nav>
         <div className="contBoton">
